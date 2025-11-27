@@ -37,6 +37,7 @@
     "@nestjs/swagger": "^7.4.2",
     "@nestjs/typeorm": "^10.0.2",
     "@pinata/sdk": "^2.1.0",
+    "axios": "^1.13.2",
     "cache-manager": "^5.7.6",
     "cache-manager-redis-yet": "^4.2.0",
     "class-transformer": "^0.5.1",
