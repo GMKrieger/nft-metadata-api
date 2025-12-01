@@ -1,11 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CacheModule } from '@nestjs/cache-manager';
+import { CacheModule as NestCacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-redis-yet';
 import type { RedisClientOptions } from 'redis';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { NftModule } from './modules/nft/nft.module';
+import { BlockchainModule } from './modules/blockchain/blockchain.module';
+import { MetadataModule } from './modules/metadata/metadata.module';
+import { CacheModule } from './modules/cache/cache.module';
 
 @Module({
   imports: [
@@ -23,7 +27,7 @@ import { AppService } from './app.service';
         logging: configService.get<string>('NODE_ENV') === 'development',
       }),
     }),
-    CacheModule.registerAsync<RedisClientOptions>({
+    NestCacheModule.registerAsync<RedisClientOptions>({
       isGlobal: true,
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
@@ -36,6 +40,10 @@ import { AppService } from './app.service';
         }),
       }),
     }),
+    BlockchainModule,
+    MetadataModule,
+    CacheModule,
+    NftModule,
   ],
   controllers: [AppController],
   providers: [AppService],
