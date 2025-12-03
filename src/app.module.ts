@@ -10,6 +10,7 @@ import { NftModule } from './modules/nft/nft.module';
 import { BlockchainModule } from './modules/blockchain/blockchain.module';
 import { MetadataModule } from './modules/metadata/metadata.module';
 import { CacheModule } from './modules/cache/cache.module';
+import { AnalyticsModule } from './modules/analytics/analytics.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { CacheModule } from './modules/cache/cache.module';
     BlockchainModule,
     MetadataModule,
     CacheModule,
+    AnalyticsModule,
     NftModule,
   ],
   controllers: [AppController],
